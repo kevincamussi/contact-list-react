@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 import avatarIcon from '../../assets/avatar.png'
+import pencilIcon from '../../assets/pencil.png'
 
 const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
   const dispatch = useDispatch()
@@ -46,7 +47,7 @@ const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
           type="button"
           color={isEditing ? '#ff2c2c' : 'transparent'}
         >
-          {isEditing ? 'Salvar' : <img src="src/assets/pencil.png" alt="" />}
+          {isEditing ? 'Salvar' : <img src={pencilIcon} alt="" />}
         </EditButton>
         <img src={photo || avatarIcon} alt="Contact Image" />
         <div>

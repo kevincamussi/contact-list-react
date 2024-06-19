@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import avatarIcon from '../../assets/avatar.png'
+
 const RegisterContainer = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -41,7 +43,7 @@ const RegisterContainer = () => {
         <Title fontSize="24px">Adicionar/Alterar Contato</Title>
         <hr />
         <ContactEditCard key={contact.id}>
-          <img src="src/assets/avatar.png" alt="avatar" />
+          <img src={avatarIcon} alt="avatar" />
           <InputContainer>
             <div>
               <label htmlFor="contactName">Nome:</label>
