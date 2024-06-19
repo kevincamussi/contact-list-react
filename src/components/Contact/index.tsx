@@ -5,6 +5,8 @@ import { remove, edit } from '../../store/reducers/contact'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
+import avatarIcon from '../../assets/avatar.png'
+
 const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
   const dispatch = useDispatch()
 
@@ -46,7 +48,7 @@ const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
         >
           {isEditing ? 'Salvar' : <img src="src/assets/pencil.png" alt="" />}
         </EditButton>
-        <img src={photo || 'src/assets/avatar.png'} alt="Contact Image" />
+        <img src={photo || avatarIcon} alt="Contact Image" />
         <div>
           <h3>Nome:</h3>
           <input
