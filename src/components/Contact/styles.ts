@@ -4,15 +4,15 @@ export type Props = {
   cardWidth?: string
 }
 
-export const ContactCard = styled.div<Props>`
+export const ContactCardStyle = styled.div<Props>`
   font-size: 24px;
   border-radius: 8px;
   border: 1px solid ${(props) => props.theme.color4};
   max-width: 300px;
-  // width: ${(props) => (props.cardWidth ? props.cardWidth : 'auto')};
   padding: 24px;
   margin: 8px;
   position: relative;
+  text-align: center;
 
   img {
     width: 80px;
@@ -22,7 +22,8 @@ export const ContactCard = styled.div<Props>`
     border-radius: 8px;
   }
 
-  h3 {
+  h3,
+  input {
     font-weight: 900;
     margin: 4px 2px;
     color: ${(props) => props.theme.secondaryColor};
@@ -31,6 +32,7 @@ export const ContactCard = styled.div<Props>`
   div {
     display: flex;
     margin: 4px 0;
+    justify-content: space-between;
   }
 
   @media (max-width: 500px) {
@@ -39,18 +41,22 @@ export const ContactCard = styled.div<Props>`
 `
 
 export const EditButton = styled.button`
-  background-color: transparent;
+  background-color: ${(props) => props.color || 'transparent'};
+  padding: 4px;
+  border-radius: 8px;
   border: none;
+  max-height: 40px;
+  text-align: center;
   cursor: pointer;
   position: absolute;
   right: 4px;
   top: 4px;
 
-  :hover {
-    transform: scale(1.2);
+  &:hover {
+    transform: scale(1.1);
   }
 
-  :active {
+  &:active {
     transform: scale(1);
   }
 
@@ -58,4 +64,11 @@ export const EditButton = styled.button`
     width: 24px;
     height: 24px;
   }
+`
+
+export const RemoveButton = styled(EditButton)`
+  position: relative;
+  background-color: ${(props) => props.color};
+  padding: 8px;
+  font-weight: bold;
 `

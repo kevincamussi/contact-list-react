@@ -1,27 +1,97 @@
 import Title from '../../components/Title'
 import Button from '../../components/Button'
 
-import { ContactEditCard } from './styles'
+import { addContact } from '../../store/reducers/contact'
+import { ContactEditCard, InputContainer } from './styles'
 import { ContactListContainer as RegisterContainerStyle } from '../ContactsList/styles'
 import { Footer } from '../../components/Footer/styles'
+import { useDispatch } from 'react-redux'
+import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const RegisterContainer = () => (
-  <>
-    <RegisterContainerStyle>
-      <Title fontSize="24px">Adicionar/Alterar Contato</Title>
-      <hr />
-      <ContactEditCard>
-        <img src="https://placehold.co/160X160" alt="" />
-        <h3>Nome: Kevin</h3>
-        <h3>Telefone: 19989998384</h3>
-        <h3>E-mail: kevincamussi@gmail.com</h3>
-      </ContactEditCard>
-    </RegisterContainerStyle>
-    <Footer>
-      <Button buttonText="Cancelar" page="/" color="#ff2c2c" />
-      <Button buttonText="Salvar" page="/" color="#08f26e" />
-    </Footer>
-  </>
-)
+const RegisterContainer = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [contact, setContact] = useState({
+    contactName: '',
+    phone: '',
+    email: '',
+    photo: '',
+    id: 0
+  })
+
+  const updateContactList = (event: FormEvent) => {
+    event.preventDefault()
+    dispatch(addContact(contact))
+    navigate('/')
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target
+    setContact((prevContact) => ({
+      ...prevContact,
+      [id]: value
+    }))
+  }
+
+  return (
+    <>
+      <RegisterContainerStyle as={'form'} onSubmit={updateContactList}>
+        <Title fontSize="24px">Adicionar/Alterar Contato</Title>
+        <hr />
+        <ContactEditCard key={contact.id}>
+          <img src="src/assets/avatar.png" alt="avatar" />
+          <InputContainer>
+            <div>
+              <label htmlFor="contactName">Nome:</label>
+              <input
+                type="text"
+                id="contactName"
+                placeholder="Nome"
+                value={contact.contactName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="phone">Telefone:</label>
+              <input
+                type="number"
+                id="phone"
+                placeholder="Telefone"
+                value={contact.phone}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                placeholder="Email"
+                value={contact.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="photo">Foto:</label>
+              <input
+                type="text"
+                id="photo"
+                placeholder="Foto"
+                value={contact.photo}
+                onChange={handleChange}
+              />
+            </div>
+          </InputContainer>
+        </ContactEditCard>
+        <Button type="submit" color="#08f26e">
+          Salvar
+        </Button>
+      </RegisterContainerStyle>
+      <Footer padding="50px" />
+    </>
+  )
+}
 
 export default RegisterContainer

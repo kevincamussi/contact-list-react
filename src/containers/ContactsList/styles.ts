@@ -5,6 +5,7 @@ export const ContactListContainer = styled.div`
   position: sticky;
   height: 80vh;
   overflow-y: auto;
+  text-align: center;
 
   @media (max-width: 500px) {
     display: block;
