@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import { addContact } from '../../store/reducers/contact'
 
@@ -39,56 +40,71 @@ const RegisterContainer = () => {
     }))
   }
 
+  const itemMotion = {
+    hidden: { opacity: 0, y: -100 },
+    visible: {
+      y: 1,
+      opacity: 1
+    }
+  }
+
   return (
     <>
       <RegisterContainerStyle as={'form'} onSubmit={updateContactList}>
         <Title fontSize="24px">Adicionar/Alterar Contato</Title>
         <hr />
-        <ContactEditCard key={contact.id}>
-          <img src={avatarIcon} alt="avatar" />
-          <InputContainer>
-            <div>
-              <label htmlFor="contactName">Nome:</label>
-              <input
-                type="text"
-                id="contactName"
-                placeholder="Nome"
-                value={contact.contactName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="phone">Telefone:</label>
-              <input
-                type="number"
-                id="phone"
-                placeholder="Telefone"
-                value={contact.phone}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Email"
-                value={contact.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="photo">Foto:</label>
-              <input
-                type="text"
-                id="photo"
-                placeholder="Foto"
-                value={contact.photo}
-                onChange={handleChange}
-              />
-            </div>
-          </InputContainer>
-        </ContactEditCard>
+        <motion.div
+          variants={itemMotion}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.8, type: 'Inertia' }}
+        >
+          <ContactEditCard key={contact.id}>
+            <img src={avatarIcon} alt="avatar" />
+            <InputContainer>
+              <div>
+                <label htmlFor="contactName">Nome:</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  placeholder="Nome"
+                  value={contact.contactName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone">Telefone:</label>
+                <input
+                  type="number"
+                  id="phone"
+                  placeholder="Telefone"
+                  value={contact.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder="Email"
+                  value={contact.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="photo">Foto:</label>
+                <input
+                  type="text"
+                  id="photo"
+                  placeholder="Foto"
+                  value={contact.photo}
+                  onChange={handleChange}
+                />
+              </div>
+            </InputContainer>
+          </ContactEditCard>
+        </motion.div>
         <Button type="submit" color="#08f26e">
           Salvar
         </Button>
