@@ -11,12 +11,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, contactReducer)
 
-// const store = configureStore({
-//   reducer: {
-//     contacts: persistedReducer
-//   }
-// })
-
 const store = configureStore({
   reducer: {
     contacts: persistedReducer
