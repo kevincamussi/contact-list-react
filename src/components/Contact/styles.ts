@@ -28,6 +28,11 @@ export const ContactCardStyle = styled.div<Props>`
     font-weight: 900;
     margin: 4px 2px;
     color: ${(props) => props.theme.secondaryColor};
+
+    &[disabled] {
+      border-color: transparent;
+      background-color: transparent;
+    }
   }
 
   div {

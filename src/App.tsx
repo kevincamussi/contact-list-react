@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ThemeProvider } from 'styled-components'
@@ -22,6 +22,19 @@ export type Props = {
 function App() {
   const [isUsingDarkTheme, setIsUsingDarkTheme] = useState(false)
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme !== null) {
+      setIsUsingDarkTheme(JSON.parse(storedTheme))
+    }
+  }, [])
+
+  const changeTheme = () => {
+    const newTheme = !isUsingDarkTheme
+    setIsUsingDarkTheme(newTheme)
+    localStorage.setItem('theme', JSON.stringify(newTheme))
+  }
+
   const routes = createBrowserRouter([
     {
       path: '/',
@@ -32,10 +45,6 @@ function App() {
       element: <RegisterPage />
     }
   ])
-
-  const changeTheme = () => {
-    setIsUsingDarkTheme(!isUsingDarkTheme)
-  }
 
   return (
     <Provider store={store}>
