@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import lightTheme from '../../themes/light'
 
 export type Props = {
   cardWidth?: string
@@ -44,8 +45,8 @@ export const EditButton = styled.button`
   background-color: ${(props) => props.color || 'transparent'};
   padding: 4px;
   border-radius: 8px;
-  border: none;
-  max-height: 40px;
+  border: 1px solid ${lightTheme.color5};
+  max-height: 32px;
   text-align: center;
   cursor: pointer;
   position: absolute;

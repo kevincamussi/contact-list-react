@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import Button from '../Button'
+
 import { Footer as FooterStyle } from './styles'
+
+import Button from '../Button'
 
 const Footer = () => {
   const navigate = useNavigate()

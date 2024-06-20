@@ -1,13 +1,15 @@
-import Title from '../../components/Title'
-import Button from '../../components/Button'
+import { FormEvent, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { addContact } from '../../store/reducers/contact'
+
 import { ContactEditCard, InputContainer } from './styles'
 import { ContactListContainer as RegisterContainerStyle } from '../ContactsList/styles'
 import { Footer } from '../../components/Footer/styles'
-import { useDispatch } from 'react-redux'
-import { FormEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+
+import Title from '../../components/Title'
+import Button from '../../components/Button'
 
 import avatarIcon from '../../assets/avatar.png'
 

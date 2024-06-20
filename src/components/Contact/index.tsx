@@ -1,12 +1,13 @@
-import Contact from '../../models/Contact'
-import { ContactCardStyle, EditButton, RemoveButton } from './styles'
-
-import { remove, edit } from '../../store/reducers/contact'
-import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { remove, edit } from '../../store/reducers/contact'
+
+import Contact from '../../models/Contact'
+
+import * as S from './styles'
 
 import avatarIcon from '../../assets/avatar.png'
-import pencilIcon from '../../assets/pencil.png'
+import darkPencil from '../../assets/darkPencil.png'
 
 const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
   const dispatch = useDispatch()
@@ -33,7 +34,6 @@ const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
     if (isEditing) {
       const updatedData = { id, ...updatedContact }
       dispatch(edit(updatedData))
-      // updateLocalStorage(updatedData)
       setUpdatedContact(updatedData)
     }
     setIsEditing(!isEditing)
@@ -41,14 +41,14 @@ const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
 
   return (
     <>
-      <ContactCardStyle>
-        <EditButton
+      <S.ContactCardStyle>
+        <S.EditButton
           onClick={() => handleEdit()}
           type="button"
-          color={isEditing ? '#ff2c2c' : 'transparent'}
+          color={isEditing ? '#08f26e' : '#fff'}
         >
-          {isEditing ? 'Salvar' : <img src={pencilIcon} alt="" />}
-        </EditButton>
+          {isEditing ? 'Salvar' : <img src={darkPencil} alt="Pencil icon" />}
+        </S.EditButton>
         <img src={photo || avatarIcon} alt="Contact Image" />
         <div>
           <h3>Nome:</h3>
@@ -92,14 +92,14 @@ const ContactData = ({ contactName, email, phone, photo, id }: Contact) => {
             }
           />
         </div>
-        <RemoveButton
+        <S.RemoveButton
           type="button"
           color="#ff2c2c"
           onClick={() => dispatch(remove(id))}
         >
           Remover
-        </RemoveButton>
-      </ContactCardStyle>
+        </S.RemoveButton>
+      </S.ContactCardStyle>
     </>
   )
 }

@@ -27,6 +27,8 @@ export const InputContainer = styled.div`
   margin-top: 20px;
 
   label {
+  font-weight:bold;
+    color:${(props) => props.theme.secondaryColor};
     margin-right: 8px;
     padding: 4px;
     text-align: right;
