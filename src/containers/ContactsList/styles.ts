@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import darkTheme from '../../themes/dark'
 
 export const ContactListContainer = styled.div`
   padding: 24px;
@@ -21,4 +22,10 @@ export const ContactListStyle = styled.div`
   @media (max-width: 500px) {
     display: block;
   }
+`
+
+export const Message = styled.h3`
+  color: ${(props) => (props.theme === darkTheme ? '#fff' : '#000')};
+  font-weight: bold;
+  font-size: 18px;
 `
